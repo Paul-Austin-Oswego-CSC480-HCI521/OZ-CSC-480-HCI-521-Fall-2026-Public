@@ -2,14 +2,12 @@ package edu.oswego.csc480.rest.gift_service;
 
 import edu.oswego.csc480.entities.Gift;
 import edu.oswego.csc480.entities.Occasion;
-import edu.oswego.csc480.entities.Person;
 import edu.oswego.csc480.entities.User;
 import edu.oswego.csc480.repositories.UserRepository;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriBuilder;
-
 import java.util.Optional;
 
 import static jakarta.ws.rs.core.Response.Status;
@@ -22,9 +20,6 @@ public class OccasionResource {
 
     @Inject
     private UserRepository uRepo;
-
-
-    //TODO:         GET POST PUT DELETE
 
     @GET
     public Response getOccasion(){
@@ -53,12 +48,8 @@ public class OccasionResource {
         if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
 
         Gift gift = getGift(user.get(), gid);
-
         gift.setOccasion(occasion);
-
         User nuser = uRepo.save(user.get());
-
-
         gift = getGift(nuser, gid);
 
         if (gift == null) return Response.status(Status.INTERNAL_SERVER_ERROR).build();
@@ -75,7 +66,6 @@ public class OccasionResource {
         if (gift == null) return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 
         gift.setOccasion(occasion);
-
         User nuser = uRepo.save(user.get());
         gift = getGift(nuser, gid);
 
@@ -94,9 +84,6 @@ public class OccasionResource {
         uRepo.save(user.get());
         return Response.noContent().build();
     }
-
-
-
 
     private Gift getGift(User user, Integer gid){
         return user.getPeople().stream()
