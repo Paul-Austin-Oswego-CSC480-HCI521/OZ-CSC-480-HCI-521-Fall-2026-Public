@@ -87,7 +87,7 @@ public class OccasionResource {
         return Response.noContent().build();
     }
 
-    private Gift getGift(User user, Integer gid){
+    static Gift getGift(User user, Integer gid){
         return user.getPeople().stream()
                 .flatMap(p -> p.getGifts().stream())
                 .filter(g->g.getId().equals(gid))
