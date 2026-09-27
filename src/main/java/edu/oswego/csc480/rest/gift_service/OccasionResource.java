@@ -5,11 +5,10 @@ import edu.oswego.csc480.entities.Occasion;
 import edu.oswego.csc480.entities.User;
 import edu.oswego.csc480.repositories.UserRepository;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriBuilder;
+
 import java.util.Optional;
 
 import static jakarta.ws.rs.core.Response.Status;
@@ -61,7 +60,23 @@ public class OccasionResource {
 
         if (gift == null) return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 
-        return Response.ok(gift.getOccasion()).build();
+        return Response.created(UriBuilder.fromPath("user/{uid}/gift/{gid}/occasion").build(uid, gid)).build();
+
+    }
+
+    @PUT
+    public Response putOccasion(Occasion occasion){
+        Optional<User> user = uRepo.findById(uid);
+        if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
+        Gift gift = getGift(user.get(), gid);
+        if (gift == null) return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+
+        gift.setOccasion(occasion);
+
+        User nuser = uRepo.save(user.get());
+        gift = getGift(nuser, gid);
+
+        return Response.ok(gift).build();
 
     }
 
