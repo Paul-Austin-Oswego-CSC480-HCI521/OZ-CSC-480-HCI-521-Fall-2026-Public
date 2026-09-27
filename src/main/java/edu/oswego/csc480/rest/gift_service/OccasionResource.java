@@ -32,11 +32,7 @@ public class OccasionResource {
 
         if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
 
-        Gift gift = user.get().getPeople().stream()
-                .flatMap(p -> p.getGifts().stream())
-                .filter(g->g.getId().equals(gid))
-                .findFirst()
-                .orElse(null);
+        Gift gift = getGift(user.get(), gid);
 
         if (gift == null) return Response.status(Status.NOT_FOUND).build();
 
@@ -54,22 +50,14 @@ public class OccasionResource {
 
         if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
 
-        Gift gift = user.get().getPeople().stream()
-                .flatMap(p -> p.getGifts().stream())
-                .filter(g->g.getId().equals(gid))
-                .findFirst()
-                .orElse(null);
+        Gift gift = getGift(user.get(), gid);
 
         gift.setOccasion(occasion);
 
         User nuser = uRepo.save(user.get());
 
 
-        gift = nuser.getPeople().stream()
-                .flatMap(p -> p.getGifts().stream())
-                .filter(g->g.getId().equals(gid))
-                .findFirst()
-                .orElse(null);
+        gift = getGift(nuser, gid);
 
         if (gift == null) return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 
@@ -81,8 +69,13 @@ public class OccasionResource {
 
 
 
-
-
+    private Gift getGift(User user, Integer gid){
+        return user.getPeople().stream()
+                .flatMap(p -> p.getGifts().stream())
+                .filter(g->g.getId().equals(gid))
+                .findFirst()
+                .orElse(null);
+    }
 
 
 }
