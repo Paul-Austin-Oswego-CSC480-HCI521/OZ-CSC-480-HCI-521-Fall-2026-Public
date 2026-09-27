@@ -10,10 +10,10 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
 
-@Path("/user/{user_id}/people")
+@Path("/user/{user_id}/person")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class PeopleResource {
+public class PersonResource {
 
     @Inject
     private UserRepository userRepository;
