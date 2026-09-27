@@ -1,12 +1,14 @@
 package edu.oswego.csc480.rest.gift_service;
 
 import edu.oswego.csc480.entities.Gift;
+import edu.oswego.csc480.entities.GiftStatus;
 import edu.oswego.csc480.entities.User;
 import edu.oswego.csc480.repositories.UserRepository;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriBuilder;
 
 import java.util.Optional;
 
@@ -35,8 +37,20 @@ public class GiftStatusResource {
     }
 
     @POST
-    public Response createStatus(){
+    public Response createStatus(GiftStatus status){
+
         // THIS SHOULD NOT BE NECESSARY, ADD THE STATUS OBJECT DIRECTLY IN THE POST REQUEST TO GIFT!!!!
+
+        Optional<User> user = uRepo.findById(uid);
+        if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
+        Gift gift = OccasionResource.getGift(user.get(), gid);
+        if (gift == null) return Response.status(Status.NOT_FOUND).build();
+
+        gift.setStatus(status);
+        User nuser = uRepo.save(user.get());
+        gift = OccasionResource.getGift(nuser, gid);
+
+        return Response.created(UriBuilder.fromPath("user/{uid}/gift/{gid}/status").build(uid,gid)).build();
     }
 
     @PUT
