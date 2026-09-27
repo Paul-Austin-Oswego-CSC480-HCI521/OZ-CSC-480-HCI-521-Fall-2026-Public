@@ -2,6 +2,7 @@ package edu.oswego.csc480.rest.gift_service;
 
 import edu.oswego.csc480.entities.Gift;
 import edu.oswego.csc480.entities.Occasion;
+import edu.oswego.csc480.entities.Person;
 import edu.oswego.csc480.entities.User;
 import edu.oswego.csc480.repositories.UserRepository;
 import jakarta.inject.Inject;
@@ -43,6 +44,8 @@ public class OccasionResource {
 
     }
 
+    // I guess you could create a gift with an occasion... but you could just include
+    // the occasion when posting to gift directly
     @POST
     public Response postOccasion(Occasion occasion){
         Optional<User> user = uRepo.findById(uid);
@@ -80,6 +83,17 @@ public class OccasionResource {
 
     }
 
+    // I really don't see the use for this, as opposed to deleting the gift or updating the occasion
+    @DELETE
+    private Response deleteOccasion(){
+        Optional<User> user = uRepo.findById(uid);
+        if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
+        Gift gift = getGift(user.get(), gid);
+        if (gift == null) return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        gift.setOccasion(null);
+        uRepo.save(user.get());
+        return Response.noContent().build();
+    }
 
 
 
