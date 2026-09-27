@@ -6,6 +6,7 @@ import edu.oswego.csc480.entities.User;
 import edu.oswego.csc480.repositories.UserRepository;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriBuilder;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Optional;
 import static jakarta.ws.rs.core.Response.Status;
 
 @Path("user/{uid}/gift/{gid}/occasion")
+@Produces(MediaType.APPLICATION_JSON)
 public class OccasionResource {
 
     private @PathParam("uid") Integer uid;
