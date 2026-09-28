@@ -28,7 +28,7 @@ public class Gift {
 
     @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="cycle_id")
-    private GiftStatus cycle;
+    private GiftStatus status;
 
     @ManyToOne
     @JoinColumn(name="person_id")
@@ -88,11 +88,11 @@ public class Gift {
         this.type = type;
     }
 
-    public void setCycle(GiftStatus cycle) {
-        this.cycle = cycle;
+    public void setStatus(GiftStatus status) {
+        this.status = status;
     }
 
-    public GiftStatus getCycle() {
-        return cycle;
+    public GiftStatus getStatus() {
+        return status;
     }
 }

@@ -79,7 +79,7 @@ public class GiftResource {
             Gift gift
             ){
 
-        if (gift==null || gift.getName().isBlank() || gift.getType().isBlank() || gift.getCycle() == null){
+        if (gift==null || gift.getName().isBlank() || gift.getType().isBlank() || gift.getCycle() == null || gift.getStatus() == null){
             return Response.status(Status.BAD_REQUEST).build();
         }
 
