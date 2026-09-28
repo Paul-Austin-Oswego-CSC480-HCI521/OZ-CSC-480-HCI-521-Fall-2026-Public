@@ -14,7 +14,7 @@ public class GiftStatus {
     @Column(name="cycle_name")
     private String stage;
 
-    @OneToOne(mappedBy = "cycle")
+    @OneToOne(mappedBy = "status")
     @JsonbTransient
     private Gift gift;
 
