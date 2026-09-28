@@ -54,7 +54,16 @@ public class GiftStatusResource {
     }
 
     @PUT
-    public Response updateStatus(){
+    public Response updateStatus(GiftStatus status){
+
+        Optional<User> user = uRepo.findById(uid);
+        if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
+        Gift gift = OccasionResource.getGift(user.get(), gid);
+        if (gift == null) return Response.status(Status.NOT_FOUND).build();
+
+        gift.setStatus(status);
+
+        return Response.noContent().build();
 
     }
 
