@@ -14,7 +14,7 @@ import java.util.Optional;
 
 import static jakarta.ws.rs.core.Response.Status;
 
-@Path("user/{uid}")
+@Path("user/{uid}/gift")
 @Produces(MediaType.APPLICATION_JSON)
 public class GiftResource {
 
@@ -24,7 +24,7 @@ public class GiftResource {
     @PathParam("uid")
     private Integer uid;
 
-    @Path("gift/{gid}")
+    @Path("/{gid}")
     @GET
     public Response getGiftDirect( @PathParam("gid") Integer gid){
 
@@ -46,7 +46,6 @@ public class GiftResource {
         return Response.ok(gift).build();
     }
 
-    @Path("gift")
     @GET
     public Response getEveryGiftFromUser(){
         Optional<User> user = uRepo.findById(uid);
@@ -58,7 +57,7 @@ public class GiftResource {
         return Response.ok(gifts).build();
     }
 
-    @Path("gift/person/{pid}")
+    @Path("/person/{pid}")
     @GET
     public Response getEveryGiftFromSpecificPerson(@PathParam("pid") Integer pid){
         Optional<User> user = uRepo.findById(uid);
@@ -74,7 +73,7 @@ public class GiftResource {
         return Response.ok(person.getGifts()).build();
     }
 
-    @Path("gift/person/{pid}")
+    @Path("/person/{pid}")
     @POST
     public Response postNewGiftToPerson(@PathParam("pid") Integer pid, Gift gift){
 
@@ -113,7 +112,7 @@ public class GiftResource {
 
     }
 
-    @Path("gift/{gid}")
+    @Path("/{gid}")
     @PUT
     public Response updateGiftDirect(@PathParam("gid") Integer gid, Gift gift){
         Optional<User> user = uRepo.findById(uid);
@@ -142,7 +141,6 @@ public class GiftResource {
         return Response.status(Status.NOT_FOUND).build();
     }
 
-    @Path("gift")
     @DELETE
     public Response nukeItAll(){
         Optional<User> user = uRepo.findById(uid);
@@ -153,7 +151,7 @@ public class GiftResource {
 
         return Response.noContent().build();
     }
-    @Path("gift/{gid}")
+    @Path("/{gid}")
     @DELETE
     public Response deleteGift(@PathParam("gid") Integer gid){
 
@@ -181,7 +179,7 @@ public class GiftResource {
         return Response.status(Status.NOT_FOUND).build();
 
     }
-    @Path("gift/person/{pid}")
+    @Path("/person/{pid}")
     @DELETE
     public Response charcoal(@PathParam("pid") Integer pid){
 
