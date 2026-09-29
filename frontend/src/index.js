@@ -15,3 +15,4 @@ import "./components/gift-site-footer/gift-site-footer.js";
 
 // This entry point registers the components used by index.html. Page authors can work in
 // HTML while component implementations keep their behavior and state in JavaScript.
+import "./components/gift-login-form/gift-login-form.js";
