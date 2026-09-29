@@ -77,7 +77,7 @@ public class OccasionResource {
 
     // I really don't see the use for this, as opposed to deleting the gift or updating the occasion
     @DELETE
-    private Response deleteOccasion(){
+    public Response deleteOccasion(){
         Optional<User> user = uRepo.findById(uid);
         if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
         Gift gift = getGift(user.get(), gid);
