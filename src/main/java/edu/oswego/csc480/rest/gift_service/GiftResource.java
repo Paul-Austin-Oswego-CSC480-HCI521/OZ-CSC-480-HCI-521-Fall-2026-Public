@@ -14,16 +14,19 @@ import java.util.Optional;
 
 import static jakarta.ws.rs.core.Response.Status;
 
-@Path("user/{user_id}")
+@Path("user/{uid}")
 @Produces(MediaType.APPLICATION_JSON)
 public class GiftResource {
 
     @Inject
     private UserRepository uRepo;
 
-    @Path("gift/{id}")
+    @PathParam("uid")
+    private Integer uid;
+
+    @Path("gift/{gid}")
     @GET
-    public Response getGiftDirect(@PathParam("user_id") Integer uid, @PathParam("id") Integer gid){
+    public Response getGiftDirect( @PathParam("gid") Integer gid){
 
         Optional<User> user = uRepo.findById(uid);
 
@@ -45,7 +48,7 @@ public class GiftResource {
 
     @Path("gift")
     @GET
-    public Response getEveryGiftFromUser(@PathParam("user_id") Integer uid){
+    public Response getEveryGiftFromUser(){
         Optional<User> user = uRepo.findById(uid);
         if (user.isEmpty()){
             return Response.status(Status.NOT_FOUND).build();
@@ -55,9 +58,9 @@ public class GiftResource {
         return Response.ok(gifts).build();
     }
 
-    @Path("person/{pid}/gift")
+    @Path("gift/person/{pid}")
     @GET
-    public Response getEveryGiftFromSpecificPerson(@PathParam("user_id") Integer uid, @PathParam("pid") Integer pid){
+    public Response getEveryGiftFromSpecificPerson(@PathParam("pid") Integer pid){
         Optional<User> user = uRepo.findById(uid);
         if (user.isEmpty()){
             return Response.status(Status.NOT_FOUND).build();
@@ -71,13 +74,9 @@ public class GiftResource {
         return Response.ok(person.getGifts()).build();
     }
 
-    @Path("person/{pid}/gift")
+    @Path("gift/person/{pid}")
     @POST
-    public Response postNewGiftToPerson(
-            @PathParam("user_id") Integer uid,
-            @PathParam("pid") Integer pid,
-            Gift gift
-            ){
+    public Response postNewGiftToPerson(@PathParam("pid") Integer pid, Gift gift){
 
         if (gift==null || gift.getName().isBlank() || gift.getType().isBlank() || gift.getStatus() == null || gift.getStatus() == null){
             return Response.status(Status.BAD_REQUEST).build();
@@ -116,7 +115,7 @@ public class GiftResource {
 
     @Path("gift/{gid}")
     @PUT
-    public Response updateGiftDirect(@PathParam("user_id") Integer uid, @PathParam("gid") Integer gid, Gift gift){
+    public Response updateGiftDirect(@PathParam("gid") Integer gid, Gift gift){
         Optional<User> user = uRepo.findById(uid);
         if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
 
@@ -133,6 +132,8 @@ public class GiftResource {
             }
         }
         if (person != null && currentGift != null){
+            gift.setPerson(currentGift.getPerson());
+            gift.setId(currentGift.getId());
             person.getGifts().remove(currentGift);
             person.getGifts().add(gift);
             uRepo.save(user.get());
@@ -141,11 +142,9 @@ public class GiftResource {
         return Response.status(Status.NOT_FOUND).build();
     }
 
-    //TODO DELETE
-
     @Path("gift")
     @DELETE
-    public Response nukeItAll(@PathParam("user_id") Integer uid){
+    public Response nukeItAll(){
         Optional<User> user = uRepo.findById(uid);
         if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
 
@@ -155,7 +154,8 @@ public class GiftResource {
         return Response.noContent().build();
     }
     @Path("gift/{gid}")
-    public Response deleteGift(@PathParam("user_id") Integer uid, @PathParam("gid") Integer gid){
+    @DELETE
+    public Response deleteGift(@PathParam("gid") Integer gid){
 
         Optional<User> user = uRepo.findById(uid);
         if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
@@ -181,9 +181,9 @@ public class GiftResource {
         return Response.status(Status.NOT_FOUND).build();
 
     }
-    @Path("person/{pid}")
+    @Path("gift/person/{pid}")
     @DELETE
-    public Response charcoal(@PathParam("user_id") Integer uid, @PathParam("pid") Integer pid){
+    public Response charcoal(@PathParam("pid") Integer pid){
 
         Optional<User> user = uRepo.findById(uid);
         if (user.isEmpty()) return Response.status(Status.NOT_FOUND).build();
