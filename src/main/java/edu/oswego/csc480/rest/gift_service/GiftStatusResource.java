@@ -63,6 +63,8 @@ public class GiftStatusResource {
 
         gift.setStatus(status);
 
+        uRepo.save(user.get());
+
         return Response.noContent().build();
 
     }
