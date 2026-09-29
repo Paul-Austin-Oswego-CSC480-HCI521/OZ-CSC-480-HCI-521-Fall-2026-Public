@@ -1,5 +1,6 @@
 package edu.oswego.csc480.entities;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,7 +14,8 @@ public class GiftStatus {
     @Column(name="cycle_name")
     private String stage;
 
-    @OneToOne(mappedBy = "cycle")
+    @OneToOne(mappedBy = "status")
+    @JsonbTransient
     private Gift gift;
 
     public GiftStatus(){}
