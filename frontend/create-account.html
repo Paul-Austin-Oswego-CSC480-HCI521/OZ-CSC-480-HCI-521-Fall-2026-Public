@@ -10,11 +10,15 @@
     <div class="no-scrolling login-page">
       <gift-nav-header product-name="Gift App">
         <cds-header-nav menu-bar-label="Gift App navigation">
+          <!--
           <cds-header-nav-item href="/">Gift App</cds-header-nav-item>
           <cds-header-nav-item href="/gifts">Gifts</cds-header-nav-item>
           <cds-header-nav-item href="/people">People</cds-header-nav-item>
+          -->
         </cds-header-nav>
       </gift-nav-header>
+
+    <gift-gradient-container>
       <main class="login-main">
         <section class="login-panel" aria-labelledby="create-account-heading">
                     <div class="login-brand" aria-label="Gift App">
@@ -34,12 +38,14 @@
           </div>
           <p class="cds--type-body-01">
             Already have an account?
-            
-            <cds-link href="./login.html">Log in</cds-link>
+
+            <cds-link href="./index.html">Log in</cds-link>
           </p>
         </section>
       </main>
-      <gift-site-footer></gift-site-footer>
+    </gift-gradient-container>
+        <!-- <gift-site-footer></gift-site-footer> -->
+
     </div>
     <script type="module" src="/src/index.js"></script>
     <script type="module" src="/src/create-account.js"></script>

@@ -6,9 +6,8 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  padding: var(--cds-spacing-09, 3rem) var(--cds-spacing-05, 1rem);
+  padding: 166px 826px 247.999px 134px;
   margin-block-start: var(--cds-spacing-09, 3rem);
-  background: linear-gradient(90deg, #ffc6c6 0%, #ffd7a3 100%);
 }
 
 .login-page .login-panel {
