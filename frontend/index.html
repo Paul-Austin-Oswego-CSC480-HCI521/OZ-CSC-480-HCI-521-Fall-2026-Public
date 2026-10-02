@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log in | Gift App</title>
     <meta name="description" content="Log in to your Gift App account." />
+    <!-- Linked (not JS-imported) so these load as real stylesheets that block first paint,
+         avoiding a flash of unstyled content while the JS module graph loads. -->
+    <link rel="stylesheet" href="/src/styles/app.css" />
+    <link rel="stylesheet" href="/src/styles/login.css" />
+    <!-- Hide custom elements until their JS defines them, avoiding a flash of unstyled
+         <gift-*>/<cds-*> elements before they upgrade. -->
+    <style>
+      :not(:defined) {
+        visibility: hidden;
+      }
+    </style>
   </head>
   <body class="cds--white">
     <div class="no-scrolling login-page">
