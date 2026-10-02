@@ -66,6 +66,17 @@ export class LoginForm extends LitElement {
     );
   }
 
+  async firstUpdated() {
+    // Carbon's cds-password-input doesn't set `for` on its internal <label>,
+    // so its <input> has no accessible name. Set aria-label directly until
+    // upstream fixes it (carbon-design-system/carbon password-input.ts).
+    const passwordInput = this.renderRoot.querySelector("cds-password-input");
+    await passwordInput?.updateComplete;
+    passwordInput?.shadowRoot
+      ?.querySelector("input")
+      ?.setAttribute("aria-label", passwordInput.label);
+  }
+
   _handleKeydown(event) {
     // Carbon inputs have their own shadow roots, so handle Enter explicitly.
     if (
@@ -99,6 +110,7 @@ export class LoginForm extends LitElement {
         </cds-text-input>
         <cds-password-input
           name="password"
+          id="password"
           autocomplete="current-password"
           required
           label="Password"
