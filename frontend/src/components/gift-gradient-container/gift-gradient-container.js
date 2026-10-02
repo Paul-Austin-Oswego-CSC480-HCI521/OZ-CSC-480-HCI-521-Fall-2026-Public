@@ -38,4 +38,3 @@ export class GradientContainer extends LitElement {
 customElements.define("gift-gradient-container", GradientContainer);
 
 // This connects the HTML tag to the class above. Import this file before using the tag.
-

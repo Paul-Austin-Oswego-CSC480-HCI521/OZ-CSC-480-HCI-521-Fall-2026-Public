@@ -4,7 +4,10 @@ import "./gift-login-form.js";
 export default {
   title: "Example/Login Form",
   render: ({ errorMessage, loading }) => html`
-    <gift-login-form error-message=${errorMessage} ?loading=${loading}></gift-login-form>
+    <gift-login-form
+      error-message=${errorMessage}
+      ?loading=${loading}
+    ></gift-login-form>
   `,
   argTypes: {
     errorMessage: { control: "text" },

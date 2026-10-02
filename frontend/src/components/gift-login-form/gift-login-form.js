@@ -13,14 +13,20 @@ export class LoginForm extends LitElement {
   };
 
   static styles = css`
-    :host { display: block; }
+    :host {
+      display: block;
+    }
     form {
       display: flex;
       flex-direction: column;
       gap: var(--cds-spacing-06, 1.5rem);
     }
-    cds-inline-notification { max-inline-size: 100%; }
-    cds-button { align-self: flex-start; }
+    cds-inline-notification {
+      max-inline-size: 100%;
+    }
+    cds-button {
+      align-self: flex-start;
+    }
   `;
 
   constructor() {
@@ -39,8 +45,11 @@ export class LoginForm extends LitElement {
     const passwordInput = this.renderRoot.querySelector("cds-password-input");
     const email = emailInput.value.trim();
     const password = passwordInput.value;
-    this._emailError = !email ? "Enter your email address." :
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "Enter a valid email address." : "";
+    this._emailError = !email
+      ? "Enter your email address."
+      : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+        ? "Enter a valid email address."
+        : "";
     this._passwordError = password ? "" : "Enter your password.";
     if (this._emailError || this._passwordError) {
       (this._emailError ? emailInput : passwordInput).focus();
@@ -48,40 +57,74 @@ export class LoginForm extends LitElement {
     }
 
     // The page owns authentication; this component only validates and emits data.
-    this.dispatchEvent(new CustomEvent("login-submit", {
-      detail: { email, password },
-      bubbles: true,
-      composed: true,
-    }));
+    this.dispatchEvent(
+      new CustomEvent("login-submit", {
+        detail: { email, password },
+        bubbles: true,
+        composed: true,
+      }),
+    );
   }
 
   _handleKeydown(event) {
     // Carbon inputs have their own shadow roots, so handle Enter explicitly.
-    if (event.key === "Enter" && !event.isComposing &&
-        event.composedPath()[0]?.tagName === "INPUT") {
+    if (
+      event.key === "Enter" &&
+      !event.isComposing &&
+      event.composedPath()[0]?.tagName === "INPUT"
+    ) {
       this._submit(event);
     }
   }
 
   render() {
     return html`
-      <form aria-label="Log in" aria-busy=${this.loading} novalidate
-        @submit=${this._submit} @keydown=${this._handleKeydown}>
-        <cds-text-input name="email" type="email" autocomplete="username" required
-          label="Email" ?disabled=${this.loading}
-          ?invalid=${Boolean(this._emailError)} invalid-text=${this._emailError}>
+      <form
+        aria-label="Log in"
+        aria-busy=${this.loading}
+        novalidate
+        @submit=${this._submit}
+        @keydown=${this._handleKeydown}
+      >
+        <cds-text-input
+          name="email"
+          type="email"
+          autocomplete="username"
+          required
+          label="Email"
+          ?disabled=${this.loading}
+          ?invalid=${Boolean(this._emailError)}
+          invalid-text=${this._emailError}
+        >
         </cds-text-input>
-        <cds-password-input name="password" autocomplete="current-password" required
-          label="Password" ?disabled=${this.loading}
-          ?invalid=${Boolean(this._passwordError)} invalid-text=${this._passwordError}>
+        <cds-password-input
+          name="password"
+          autocomplete="current-password"
+          required
+          label="Password"
+          ?disabled=${this.loading}
+          ?invalid=${Boolean(this._passwordError)}
+          invalid-text=${this._passwordError}
+        >
         </cds-password-input>
-        ${this.errorMessage ? html`
-          <cds-inline-notification kind="error" title="Unable to log in"
-            subtitle=${this.errorMessage} hide-close-button>
-          </cds-inline-notification>
-        ` : nothing}
-        <cds-button type="button" kind="primary" ?disabled=${this.loading}
-          @click=${this._submit}>${this.loading ? "Logging in…" : "Log in"}</cds-button>
+        ${this.errorMessage
+          ? html`
+              <cds-inline-notification
+                kind="error"
+                title="Unable to log in"
+                subtitle=${this.errorMessage}
+                hide-close-button
+              >
+              </cds-inline-notification>
+            `
+          : nothing}
+        <cds-button
+          type="button"
+          kind="primary"
+          ?disabled=${this.loading}
+          @click=${this._submit}
+          >${this.loading ? "Logging in…" : "Log in"}</cds-button
+        >
       </form>
     `;
   }

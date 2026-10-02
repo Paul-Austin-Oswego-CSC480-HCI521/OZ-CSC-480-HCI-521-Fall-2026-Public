@@ -1,7 +1,9 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import "./gift-login-form.js";
 
-afterEach(() => { document.body.replaceChildren(); });
+afterEach(() => {
+  document.body.replaceChildren();
+});
 
 async function renderForm() {
   const form = document.createElement("gift-login-form");
@@ -10,7 +12,11 @@ async function renderForm() {
   const email = form.shadowRoot.querySelector("cds-text-input");
   const password = form.shadowRoot.querySelector("cds-password-input");
   const button = form.shadowRoot.querySelector("cds-button");
-  await Promise.all([email.updateComplete, password.updateComplete, button.updateComplete]);
+  await Promise.all([
+    email.updateComplete,
+    password.updateComplete,
+    button.updateComplete,
+  ]);
   return { form, email, password, button };
 }
 
@@ -48,7 +54,10 @@ describe("gift-login-form", () => {
     button.click();
     expect(submit).toHaveBeenCalledTimes(1);
     const event = submit.mock.calls[0][0];
-    expect(event.detail).toEqual({ email: "user@example.com", password: " password with spaces " });
+    expect(event.detail).toEqual({
+      email: "user@example.com",
+      password: " password with spaces ",
+    });
     expect(event.bubbles).toBe(true);
     expect(event.composed).toBe(true);
     await form.updateComplete;
@@ -60,9 +69,14 @@ describe("gift-login-form", () => {
     password.value = "example-password";
     const submit = vi.fn();
     form.addEventListener("login-submit", submit);
-    password.shadowRoot.querySelector("input").dispatchEvent(new KeyboardEvent("keydown", {
-      key: "Enter", bubbles: true, composed: true, cancelable: true,
-    }));
+    password.shadowRoot.querySelector("input").dispatchEvent(
+      new KeyboardEvent("keydown", {
+        key: "Enter",
+        bubbles: true,
+        composed: true,
+        cancelable: true,
+      }),
+    );
     expect(submit).toHaveBeenCalledTimes(1);
   });
 
@@ -74,10 +88,14 @@ describe("gift-login-form", () => {
     form.setAttribute("error-message", "Wrong email or password");
     await form.updateComplete;
     expect(button.disabled).toBe(true);
-    expect(form.shadowRoot.querySelector("cds-inline-notification").subtitle).toBe("Wrong email or password");
+    expect(
+      form.shadowRoot.querySelector("cds-inline-notification").subtitle,
+    ).toBe("Wrong email or password");
     const submit = vi.fn();
     form.addEventListener("login-submit", submit);
-    form.shadowRoot.querySelector("form").dispatchEvent(new Event("submit", { cancelable: true }));
+    form.shadowRoot
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true }));
     expect(submit).not.toHaveBeenCalled();
   });
 });
