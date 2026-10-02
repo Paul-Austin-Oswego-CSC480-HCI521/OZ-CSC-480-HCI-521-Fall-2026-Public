@@ -5,9 +5,6 @@ import Clarity from "@microsoft/clarity";
 
 Clarity.init("yjthhigok4");
 
-// Styles used by the page itself, such as the full-height layout.
-import "./styles/app.css";
-
 // Rounds Carbon input/select/textarea field corners — see the file for why this
 // has to be JS rather than a CSS rule.
 import "./styles/carbon-shape-overrides.js";
