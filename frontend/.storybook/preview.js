@@ -3,6 +3,7 @@ import "happo/storybook/register";
 import { html } from "lit";
 import "../src/styles/brand-theme.css";
 import "../src/styles/brand-theme-dark.css";
+import "../src/styles/carbon-shape-overrides.js";
 
 const THEMES = {
   light: { carbonClass: "cds--white", brandTheme: "brand" },

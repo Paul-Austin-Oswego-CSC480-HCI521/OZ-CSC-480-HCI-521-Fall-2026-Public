@@ -30,6 +30,30 @@
  * redefining these two globally.
  */
 
+/*
+ * Shape override: rounded corners for buttons.
+ *
+ * Carbon's own components hardcode border-radius (mostly 0, i.e. square corners)
+ * rather than reading it from a CSS custom property or Sass variable at the
+ * component level, so there's no token to redefine here the way the colors above
+ * redefine --cds-*. The only way to reach the actual rendered edge from outside
+ * the component is a shadow-DOM ::part() selector, and Carbon only exposes one on
+ * cds-button (part="button") and cds-dropdown's trigger (part="trigger-button").
+ *
+ * cds-text-input, cds-textarea, cds-number-input and cds-select do NOT expose any
+ * part on their inner <input>/<textarea>/<select> element, so their border-radius
+ * can't be reached from this file at all. See carbon-shape-overrides.js (imported
+ * alongside this file) for how those get rounded instead — by injecting a
+ * stylesheet straight into each component's shadow root.
+ *
+ * Not scoped to [data-carbon-theme="brand"]/"brand-dark": shape isn't a light/dark
+ * concern, so this applies whenever this stylesheet is loaded, same as brand-dark.
+ */
+cds-button::part(button),
+cds-dropdown::part(trigger-button) {
+  border-radius: 0.25rem; /* $border-radius-04 from @carbon/layout */
+}
+
 [data-carbon-theme="brand"] {
   /* Backgrounds & layers */
   --cds-background: #FCFBF4;
