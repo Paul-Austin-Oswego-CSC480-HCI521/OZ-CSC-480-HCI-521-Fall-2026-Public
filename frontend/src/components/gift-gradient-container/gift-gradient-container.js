@@ -1,4 +1,6 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css, unsafeCSS} from "lit";
+
+import bgImage from "../../assets/background.jpg";
 
 // Reusable pink/orange panel for page content. It is a custom component because Carbon does not
 // provide this exact layout. Page content goes into the default slot below.
@@ -19,7 +21,8 @@ export class GradientContainer extends LitElement {
       flex: 1 0 0;
       align-self: stretch;
       box-sizing: border-box;
-      background: linear-gradient(90deg, #ffc6c6 0%, #ffd7a3 100%);
+      /*background: linear-gradient(90deg, #ffc6c6 0%, #ffd7a3 100%);*/
+      background: url("${unsafeCSS(bgImage)}") lightgray 50% / cover no-repeat;
       color: var(--Text-text-primary, #161616);
       font-family: var(--Font-family, "IBM Plex Sans");
       font-size: 14px;
