@@ -23,6 +23,7 @@ const GROUPS = [
       ["--cds-text-primary", "#0A0A0A"],
       ["--cds-text-secondary", "#5A4D4A"],
       ["--cds-text-helper", "#7A6864"],
+      ["--cds-text-placeholder", "#B1A29F"],
       ["--cds-text-error", "#da1e28"],
       ["--cds-text-inverse", "#ffffff"],
     ],
