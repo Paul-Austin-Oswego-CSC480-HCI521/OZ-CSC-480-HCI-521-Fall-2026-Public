@@ -6,8 +6,14 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  padding: 166px 826px 247.999px 134px;
   margin-block-start: var(--cds-spacing-09, 3rem);
+}
+
+@media (min-width: 768px) {
+  .login-page .login-main {
+    justify-content: flex-start;
+    padding-left: clamp(1.5rem, 5vw, 3rem);
+  }
 }
 
 .login-page .login-panel {
