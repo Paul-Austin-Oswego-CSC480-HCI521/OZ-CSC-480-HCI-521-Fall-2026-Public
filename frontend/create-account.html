@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Log in | Gift App</title>
-    <meta name="description" content="Log in to your Gift App account." />
+    <title>Create account | Gift App</title>
+    <meta name="description" content="Create your Gift App account." />
     <!-- Linked (not JS-imported) so these load as real stylesheets that block first paint,
          avoiding a flash of unstyled content while the JS module graph loads. -->
     <link rel="stylesheet" href="/src/styles/app.css" />
@@ -28,9 +28,10 @@
           -->
         </cds-header-nav>
       </gift-nav-header>
+
     <gift-gradient-container>
       <main class="login-main">
-        <section class="login-panel" aria-labelledby="login-heading">
+        <section class="login-panel" aria-labelledby="create-account-heading">
                     <div class="login-brand" aria-label="Gift App">
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
               <path d="M5 14h22v16H5zM3 8h26v6H3zM16 8v22" />
@@ -39,25 +40,25 @@
             <span>Gift App</span>
           </div>
           <header class="login-intro">
-            <h1 id="login-heading" class="cds--type-heading-05">Welcome back</h1>
-            <p class="cds--type-body-01">Log in for more thoughtful gift-giving.</p>
+            <h1 id="create-account-heading" class="cds--type-heading-05">Create account</h1>
+            <p class="cds--type-body-01">Start your thoughtful gift-giving journey.</p>
           </header>
 
-          <div id="login-form-container">
-            <gift-login-form></gift-login-form>
+          <div id="create-account-form-container">
+            <gift-create-account-form></gift-create-account-form>
           </div>
           <p class="cds--type-body-01">
-            New to Gift App?
+            Already have an account?
 
-            <cds-link id="create-account-link" href="./create-account.html">Create account</cds-link>
+            <cds-link href="./index.html">Log in</cds-link>
           </p>
         </section>
       </main>
     </gift-gradient-container>
-      <!-- <gift-site-footer></gift-site-footer> -->
+        <!-- <gift-site-footer></gift-site-footer> -->
 
     </div>
     <script type="module" src="/src/index.js"></script>
-    <script type="module" src="/src/login.js"></script>
+    <script type="module" src="/src/create-account.js"></script>
   </body>
 </html>

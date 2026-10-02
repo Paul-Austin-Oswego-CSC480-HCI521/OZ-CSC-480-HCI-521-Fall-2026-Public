@@ -1,3 +1,8 @@
+/* Carbon's shared colors, spacing, fonts, and accessible defaults. Imported here (rather
+   than in JS) so the browser can load it as a real stylesheet via a <link> tag in <head>,
+   which blocks first paint instead of flashing unstyled content while JS loads. */
+@import "@carbon/styles/css/styles.css";
+
 /* The page wrapper grows to at least the height of the browser window. */
 .no-scrolling {
   display: flex;
