@@ -1,5 +1,6 @@
 package edu.oswego.csc480.entities;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -12,7 +13,7 @@ public class Gift {
     @Column(name="gift_id")
     private Integer id;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="occasion_id")
     private Occasion occasion;
 
@@ -25,12 +26,13 @@ public class Gift {
     @Column(name="gift_type")
     private String type;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="cycle_id")
-    private GiftStatus cycle;
+    private GiftStatus status;
 
     @ManyToOne
     @JoinColumn(name="person_id")
+    @JsonbTransient
     private Person person;
 
     @Column(name="gift_price")
@@ -86,11 +88,11 @@ public class Gift {
         this.type = type;
     }
 
-    public void setCycle(GiftStatus cycle) {
-        this.cycle = cycle;
+    public void setStatus(GiftStatus status) {
+        this.status = status;
     }
 
-    public GiftStatus getCycle() {
-        return cycle;
+    public GiftStatus getStatus() {
+        return status;
     }
 }

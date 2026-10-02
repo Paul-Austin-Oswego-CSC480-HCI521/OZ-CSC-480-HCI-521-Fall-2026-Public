@@ -11,6 +11,18 @@ export default defineConfig({
   server: {
     port: 5173,
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL("./index.html", import.meta.url)),
+        createAccount: fileURLToPath(new URL("./create-account.html", import.meta.url)),
+
+        //This is our old landing page (oldIndex) it is no longer used, but we can save it
+        //as a learning tool and potential future use?
+        //oldLanding: fileURLToPath(new URL("./oldIndex.html", import.meta.url)),
+      },
+    },
+  },
   test: {
     coverage: {
       provider: "v8",

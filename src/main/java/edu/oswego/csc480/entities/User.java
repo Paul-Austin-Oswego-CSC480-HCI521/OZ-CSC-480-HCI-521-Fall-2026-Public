@@ -26,14 +26,20 @@ public class User implements Serializable {
     @Column(name="full_name")
     private String fullName; // could instead be managed by a function?
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     UserAttributes attributes;
 
-    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Person> people;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserWishedItem> wishlist;
+
+    @Column(name="email_address")
+    private String email;
+
+    @Column(name="username")
+    private String username;
 
     // Make sure there is a dummy constructor for persistence to work
     // also getters and setters for everything.
@@ -95,5 +101,21 @@ public class User implements Serializable {
 
     public void setWishlist(List<UserWishedItem> wishlist) {
         this.wishlist = wishlist;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
