@@ -78,6 +78,7 @@ cds-dropdown::part(trigger-button) {
   --cds-text-primary: #0A0A0A;
   --cds-text-secondary: #5A4D4A; /* was Carbon default #525252 - warmed toward the border-subtle rose hue (same lightness) */
   --cds-text-helper: #7A6864; /* was Carbon default #6f6f6f - warmed toward the border-subtle rose hue (same lightness) */
+  --cds-text-placeholder: #B1A29F; /* was Carbon default rgba(22,22,22,0.4) - from finalized login design (Figma node 1287:1374), a solid warm neutral instead of a black/alpha mix so placeholder text reads the same over --cds-field-01/02 regardless of what's beneath it */
   --cds-text-error: #da1e28;
   --cds-text-inverse: #ffffff;
 
