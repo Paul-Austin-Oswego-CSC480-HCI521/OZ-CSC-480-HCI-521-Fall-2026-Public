@@ -90,6 +90,23 @@ export class CreateAccountForm extends LitElement {
       this._submit(event);
   }
 
+  async firstUpdated() {
+    // Carbon's cds-password-input doesn't set `for` on its internal <label>,
+    // so its <input> has no accessible name. Set aria-label directly until
+    // upstream fixes it (carbon-design-system/carbon password-input.ts).
+    const passwordInputs = this.renderRoot.querySelectorAll(
+      "cds-password-input",
+    );
+    await Promise.all(
+      [...passwordInputs].map(async (passwordInput) => {
+        await passwordInput.updateComplete;
+        passwordInput.shadowRoot
+          ?.querySelector("input")
+          ?.setAttribute("aria-label", passwordInput.label);
+      }),
+    );
+  }
+
   render() {
     return html`
       <form
@@ -124,6 +141,7 @@ export class CreateAccountForm extends LitElement {
           ([name, label]) => html`
             <cds-password-input
               name=${name}
+              id=${name}
               label=${label}
               autocomplete="new-password"
               required
