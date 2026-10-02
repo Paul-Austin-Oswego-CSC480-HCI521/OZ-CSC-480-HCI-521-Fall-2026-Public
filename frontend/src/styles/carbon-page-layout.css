@@ -190,3 +190,29 @@
   font-size: 0.75rem;
   color: var(--cds-text-secondary);
 }
+
+/* Type sample list, used by Foundations/Typography. Each sample's own font-size/
+   line-height/font-family come from inline styles (the data being illustrated); these
+   classes only handle the shared layout around that. */
+.type-sample-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.type-sample {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.type-sample-text {
+  margin: 0;
+}
+
+.type-sample-meta {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: 0.75rem;
+  color: var(--cds-text-secondary);
+}

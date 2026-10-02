@@ -54,6 +54,71 @@ cds-dropdown::part(trigger-button) {
   border-radius: 0.25rem; /* $border-radius-04 from @carbon/layout */
 }
 
+/*
+ * Typography: Outfit for headings, Roboto for body/caption text (see fonts.css for the
+ * Google Fonts import). Like the shape override above, this isn't a light/dark concern,
+ * so it applies whenever this stylesheet is loaded, same as brand-dark.
+ *
+ * Carbon has no font-family custom property anywhere - every component hardcodes
+ * 'IBM Plex Sans'/'IBM Plex Mono' directly in its own CSS or shadow-DOM styles (confirmed:
+ * no --cds-font-* token exists in @carbon/styles or @carbon/web-components). So the two
+ * custom properties below are project-defined, not Carbon tokens. They reach plain
+ * light-DOM text - real heading elements, paragraphs, and Carbon's compiled
+ * cds--type-* helper classes - but can't reach text rendered inside a Carbon web
+ * component's own shadow DOM (e.g. the label inside cds-button), the same shadow-DOM
+ * limitation documented in carbon-shape-overrides.js for input border-radius.
+ */
+:root {
+  --font-family-heading: "Outfit", "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular", sans-serif;
+  --font-family-body: "Roboto", "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.cds--type-heading-01,
+.cds--type-heading-02,
+.cds--type-heading-03,
+.cds--type-heading-04,
+.cds--type-heading-05,
+.cds--type-heading-06,
+.cds--type-heading-07,
+.cds--type-heading-compact-01,
+.cds--type-heading-compact-02,
+.cds--type-fluid-heading-03,
+.cds--type-fluid-heading-04,
+.cds--type-fluid-heading-05,
+.cds--type-fluid-heading-06,
+.cds--type-productive-heading-01,
+.cds--type-productive-heading-02,
+.cds--type-productive-heading-03,
+.cds--type-productive-heading-04,
+.cds--type-productive-heading-05,
+.cds--type-productive-heading-06,
+.cds--type-productive-heading-07,
+.cds--type-expressive-heading-01,
+.cds--type-expressive-heading-02,
+.cds--type-expressive-heading-03,
+.cds--type-expressive-heading-04,
+.cds--type-expressive-heading-05,
+.cds--type-expressive-heading-06 {
+  font-family: var(--font-family-heading);
+}
+
+body,
+.cds--type-body-01,
+.cds--type-body-02,
+.cds--type-body-compact-01,
+.cds--type-body-compact-02,
+.cds--type-caption-01,
+.cds--type-caption-02,
+.cds--type-label-01,
+.cds--type-label-02,
+.cds--type-helper-text-01,
+.cds--type-helper-text-02,
+.cds--type-legal-01,
+.cds--type-legal-02 {
+  font-family: var(--font-family-body);
+}
+
 [data-carbon-theme="brand"] {
   /* Backgrounds & layers */
   --cds-background: #FCFBF4;
