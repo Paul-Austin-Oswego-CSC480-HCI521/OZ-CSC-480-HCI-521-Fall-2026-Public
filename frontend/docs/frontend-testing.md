@@ -134,7 +134,7 @@ describe("gift-badge", () => {
 
 Three things to always cover, following the existing tests as examples
 ([gift-nav-header.test.js](../src/components/gift-nav-header/gift-nav-header.test.js),
-[gift-gradient-container.test.js](../src/components/gift-gradient-container/gift-gradient-container.test.js),
+[gift-image-container.test.js](../src/components/gift-image-container/gift-image-container.test.js),
 [gift-site-footer.test.js](../src/components/gift-site-footer/gift-site-footer.test.js)):
 
 - default rendering (no attributes/slotted content — the "empty" case)
