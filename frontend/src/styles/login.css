@@ -1,4 +1,4 @@
-/* Match the home page gradient without changing shared components. */
+/* Match the home page background image without changing shared components. */
 .login-page .login-main {
   display: flex;
   flex: 1;

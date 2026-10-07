@@ -23,7 +23,7 @@
   background: #fff;
 }
 
-/* Page-specific content inside gift-gradient-container. */
+/* Page-specific content inside gift-image-container. */
 .container-header {
   display: flex;
   flex-direction: column;

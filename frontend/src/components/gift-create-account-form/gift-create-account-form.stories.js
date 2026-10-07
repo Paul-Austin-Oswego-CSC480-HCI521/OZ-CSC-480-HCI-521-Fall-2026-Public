@@ -2,7 +2,7 @@ import { html } from "lit";
 import "./gift-create-account-form.js";
 
 export default {
-  title: "Example/Create Account Form",
+  title: "Custom Components/Create Account Form",
   render: ({ errorMessage, loading }) => html`
     <gift-create-account-form
       error-message=${errorMessage}
