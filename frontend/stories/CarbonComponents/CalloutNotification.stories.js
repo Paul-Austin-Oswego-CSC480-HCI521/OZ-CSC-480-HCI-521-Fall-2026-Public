@@ -1,8 +1,7 @@
 import "@carbon/web-components/es/components/notification/index.js";
 import { html } from "lit";
 
-// Used as the "concept only" disclaimer banner at the top of Layouts/Page Template -
-// unlike cds-inline-notification, it has no close button by default, which suits a
+// Unlike cds-inline-notification, it has no close button by default, which suits a
 // banner that should stay visible for the whole page.
 export default {
   title: "Carbon Components/Callout Notification",

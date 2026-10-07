@@ -1,9 +1,8 @@
 import "@carbon/web-components/es/components/tag/index.js";
 import { html } from "lit";
 
-// Used as the status chip in the Gift checklist section of Layouts/Page Template - Carbon
-// has no dedicated "status chip" component, so cds-tag's color types stand in for
-// pending/active/info/neutral states there.
+// Carbon has no dedicated "status chip" component, so cds-tag's color types stand in for
+// pending/active/info/neutral states.
 export default {
   title: "Carbon Components/Tag",
   render: ({ type, label }) => html`<cds-tag type=${type}>${label}</cds-tag>`,

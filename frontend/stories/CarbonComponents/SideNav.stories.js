@@ -5,7 +5,7 @@ import "../../src/styles/brand-theme.css";
 import "../../src/styles/carbon-page-layout.css";
 
 // cds-side-nav / cds-side-nav-items / cds-side-nav-link are the Carbon primitives used
-// for the left navigation in Layouts/Page Template. Documented here on their own so the
+// for the left navigation in Page Layouts/Authenticated. Documented here on their own so the
 // brand retheme can be reviewed against them in isolation.
 export default {
   title: "Carbon Components/Side Nav",
