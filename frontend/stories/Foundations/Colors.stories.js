@@ -10,7 +10,7 @@ const GROUPS = [
     name: "Backgrounds & layers",
     tokens: [
       ["--cds-background", "#FCFBF4"],
-      ["--cds-background-inverse", "#393939 (Carbon default - see brand-theme.css note)"],
+      ["--cds-background-inverse", "#1C544A (brand green, 8.69:1 vs white - see brand-theme.css note)"],
       ["--cds-layer-01", "#EAF5F0"],
       ["--cds-layer-02", "#F1F8F5"],
       ["--cds-field-01", "#F3F2ED"],

@@ -23,7 +23,7 @@ const THEMES = {
 // and with src/styles/brand-theme.css - it's a visual reference, not a source of truth.
 const BACKGROUND_LAYER_TOKENS = [
   ["--cds-background", "#FCFBF4"],
-  ["--cds-background-inverse", "Carbon default (#393939)"],
+  ["--cds-background-inverse", "#1C544A"],
   ["--cds-layer-01", "#EAF5F0"],
   ["--cds-layer-02", "#F1F8F5"],
   ["--cds-field-01", "#F3F2ED"],

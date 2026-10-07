@@ -14,7 +14,7 @@
 // render, so plain tag selectors (not Carbon's internal class names, which
 // could change between versions) are enough and stay stable across upgrades.
 
-const RADIUS = "0.25rem"; // matches the ::part() button/dropdown radius in brand-theme.css
+const RADIUS = "var(--radius-small, 0.25rem)"; // matches the ::part() button/dropdown radius in brand-theme.css
 
 const TAG_SELECTORS = {
   "cds-text-input": "input",

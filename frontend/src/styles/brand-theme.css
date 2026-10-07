@@ -13,12 +13,10 @@
  * (verified against the WCAG contrast formula - see brand-theme-dark.css for the
  * same treatment applied to the dark theme's equivalent tokens).
  *
- * KNOWN ISSUE (do not "fix" here without checking every consumer — see usability team):
- * background-inverse is specced as #BBE4DF (light), but text-inverse/icon-inverse
- * are still white, so anywhere Carbon pairs those together (e.g. inverse buttons,
- * dark-theme panels) would render at a 1.37:1 contrast ratio — far below WCAG AA.
- * Until the usability team resolves the pairing, --cds-background-inverse below is
- * pinned to Carbon's default (#393939) so it keeps working with white text/icons.
+ * background-inverse was specced as #BBE4DF (light), but text-inverse/icon-inverse
+ * are still white, which would render inverse surfaces at 1.37:1 contrast - far below
+ * WCAG AA. --cds-background-inverse is therefore set to the brand green #1C544A instead
+ * (8.69:1 against white, passing AA and AAA) so it keeps working with white text/icons.
  *
  * Tried redefining text-inverse/icon-inverse to a dark color instead (to pair with
  * the light background-inverse spec) and reverted it: Carbon reuses icon-inverse
@@ -49,9 +47,16 @@
  * Not scoped to [data-carbon-theme="brand"]/"brand-dark": shape isn't a light/dark
  * concern, so this applies whenever this stylesheet is loaded, same as brand-dark.
  */
+:root {
+  /* Mirror the Radius collection in the Carbon Design System Figma library
+     (Radius/Small = 4, Radius/Large = 12). See Foundations/Border Radius. */
+  --radius-small: 0.25rem; /* $border-radius-04 from @carbon/layout */
+  --radius-large: 0.75rem;
+}
+
 cds-button::part(button),
 cds-dropdown::part(trigger-button) {
-  border-radius: 0.25rem; /* $border-radius-04 from @carbon/layout */
+  border-radius: var(--radius-small);
 }
 
 /*
@@ -122,7 +127,7 @@ body,
 [data-carbon-theme="brand"] {
   /* Backgrounds & layers */
   --cds-background: #FCFBF4;
-  --cds-background-inverse: #393939; /* Carbon default, not brandHex #BBE4DF — see note above */
+  --cds-background-inverse: #1C544A; /* brand green, not brandHex #BBE4DF — 8.69:1 against white text-inverse/icon-inverse, see note above */
   --cds-layer-01: #EAF5F0; /* was #F3F5F4 - the original sage tint was too low-saturation to read as anything but gray next to the warm/rose palette elsewhere; boosted saturation, same lightness so contrast is unaffected */
   --cds-layer-02: #F1F8F5; /* was Carbon default #ffffff - same sage tint as layer-01, one step lighter to keep it visibly "elevated" above layer-01 */
   --cds-field-01: #F3F2ED; /* was Carbon default #f4f4f4, then white per earlier feedback, now a shade darker than --cds-background per design feedback - same warm-neutral family as the page background, not the sage tile tint */
