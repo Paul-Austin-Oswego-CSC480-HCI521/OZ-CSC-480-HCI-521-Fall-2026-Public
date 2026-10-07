@@ -38,7 +38,7 @@
  * the component is a shadow-DOM ::part() selector, and Carbon only exposes one on
  * cds-button (part="button") and cds-dropdown's trigger (part="trigger-button").
  *
- * cds-text-input, cds-textarea, cds-number-input and cds-select do NOT expose any
+ * cds-text-input, cds-password-input, cds-textarea, cds-number-input and cds-select do NOT expose any
  * part on their inner <input>/<textarea>/<select> element, so their border-radius
  * can't be reached from this file at all. See carbon-shape-overrides.js (imported
  * alongside this file) for how those get rounded instead — by injecting a

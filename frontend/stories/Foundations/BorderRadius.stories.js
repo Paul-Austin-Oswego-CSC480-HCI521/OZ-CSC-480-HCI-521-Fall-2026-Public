@@ -10,7 +10,7 @@ import "../../src/styles/carbon-page-layout.css";
 // Radius/Large = 12). Keep this list in sync with both - it is a visual reference, not a
 // source of truth.
 const RADII = [
-  ["Small", "--radius-small", "0.25rem", 4, "Buttons, dropdown triggers, text/number/select inputs"],
+  ["Small", "--radius-small", "0.25rem", 4, "Buttons, dropdown triggers, text/password/number/select inputs"],
   ["Large", "--radius-large", "0.75rem", 12, "Cards and modals"],
 ];
 

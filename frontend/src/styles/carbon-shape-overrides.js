@@ -1,9 +1,9 @@
-// Rounds the field corners of Carbon's text/number/select inputs to match the
+// Rounds the field corners of Carbon's text/password/number/select inputs to match the
 // button radius set in brand-theme.css.
 //
 // Why this can't just be CSS: cds-button and cds-dropdown expose a `part`
 // attribute on their clickable surface, so brand-theme.css reaches them with
-// `::part()`. cds-text-input, cds-textarea, cds-number-input and cds-select do
+// `::part()`. cds-text-input, cds-password-input, cds-textarea, cds-number-input and cds-select do
 // NOT put a `part` attribute on their inner <input>/<select>/<textarea>, and
 // Carbon has no CSS custom property for field radius either — so there is no
 // selector in the outside document that can reach that element at all. The only
@@ -20,6 +20,7 @@ const TAG_SELECTORS = {
   "cds-text-input": "input",
   "cds-textarea": "textarea",
   "cds-number-input": "input",
+  "cds-password-input": "input",
   "cds-select": "select",
 };
 
