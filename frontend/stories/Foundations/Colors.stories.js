@@ -10,6 +10,7 @@ const GROUPS = [
     name: "Backgrounds & layers",
     tokens: [
       ["--cds-background", "#FCFBF4"],
+      ["--side-nav-background", "#FAF8F1 (side nav only, Navigation frame)"],
       ["--cds-background-inverse", "#1C544A (brand green, 8.69:1 vs white - see brand-theme.css note)"],
       ["--cds-layer-01", "#EAF5F0"],
       ["--cds-layer-02", "#F1F8F5"],

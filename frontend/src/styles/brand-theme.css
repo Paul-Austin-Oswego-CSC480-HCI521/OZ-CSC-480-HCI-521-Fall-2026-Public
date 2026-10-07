@@ -52,11 +52,54 @@
      (Radius/Small = 4, Radius/Large = 12). See Foundations/Border Radius. */
   --radius-small: 0.25rem; /* $border-radius-04 from @carbon/layout */
   --radius-large: 0.75rem;
+  /* Navigation frame (Usability-Team-Figma-File 1323:4981): 300px side nav including its
+     1px right border. Applied to cds-side-nav's inner panel by carbon-shape-overrides.js. */
+  --side-nav-width: 18.75rem;
 }
 
 cds-button::part(button),
 cds-dropdown::part(trigger-button) {
   border-radius: var(--radius-small);
+}
+
+/*
+ * Side nav (Navigation frame 1323:4981): text-only links at heading-05 (32/40) in the brand
+ * green, on its own tint. cds-side-nav paints its panel with --cds-background and reads no
+ * dedicated token, so the tint is set by scoping --cds-background on the host (custom
+ * properties inherit into the shadow root). Width and the right border live on the panel
+ * inside the shadow root, see carbon-shape-overrides.js. Links expose part="link"/"title".
+ */
+cds-side-nav {
+  --cds-background: var(--side-nav-background);
+}
+
+/* font-family is set on the host, not the part: carbon-font-overrides.js forces
+   `font-family: inherit !important` on everything in each shadow root, which beats a
+   ::part() declaration, so the font has to arrive by inheritance from the host. */
+cds-side-nav-link {
+  font-family: var(--font-family-heading);
+}
+
+cds-side-nav-link::part(link) {
+  block-size: auto;
+  padding-block: 1.25rem;
+  padding-inline: 1.5625rem;
+  font-size: 2rem;
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* The title span carries Carbon's own 14px heading-compact type, so it has to take the
+   link's size instead. */
+cds-side-nav-link::part(title) {
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--cds-button-primary);
+}
+
+cds-side-nav-link::part(title-icon-container) {
+  color: var(--cds-button-primary);
 }
 
 /*
@@ -127,6 +170,7 @@ body,
 [data-carbon-theme="brand"] {
   /* Backgrounds & layers */
   --cds-background: #FCFBF4;
+  --side-nav-background: #FAF8F1; /* deliberately not --cds-background: the Navigation frame's side nav is its own tint, see cds-side-nav rule above */
   --cds-background-inverse: #1C544A; /* brand green, not brandHex #BBE4DF — 8.69:1 against white text-inverse/icon-inverse, see note above */
   --cds-layer-01: #EAF5F0; /* was #F3F5F4 - the original sage tint was too low-saturation to read as anything but gray next to the warm/rose palette elsewhere; boosted saturation, same lightness so contrast is unaffected */
   --cds-layer-02: #F1F8F5; /* was Carbon default #ffffff - same sage tint as layer-01, one step lighter to keep it visibly "elevated" above layer-01 */

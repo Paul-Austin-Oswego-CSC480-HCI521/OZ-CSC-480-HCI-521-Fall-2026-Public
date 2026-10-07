@@ -64,13 +64,10 @@ export default {
       <div>
         <!-- cds-side-nav positions itself with position:fixed internally (Carbon's app-shell
              pattern: pinned nav, independently scrolling content), so it contributes no width
-             to a flex layout here. main below is given a matching margin-inline-start instead
-             of relying on flexbox to place them side by side. That also means cds-side-nav's
-             own box isn't where you'd expect: its visible fixed-position panel is an internal
-             shadow-DOM div with no exposed ::part, so a border on the <cds-side-nav> host
-             itself lands on an invisible, uninvolved box. main's border-inline-start below
-             (at the same x-position, since its margin-inline-start matches the panel's
-             rendered width) is what actually draws at the seam. -->
+             to a flex layout here. main below is given a matching margin-inline-start
+             (--side-nav-width) instead of relying on flexbox to place them side by side. The
+             panel's width and right border are applied inside its shadow root by
+             carbon-shape-overrides.js. -->
         <cds-side-nav
           expanded
           collapse-mode="fixed"

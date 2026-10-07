@@ -31,14 +31,32 @@ sheet.replaceSync(
     .join("\n")
 );
 
+// cds-side-nav hardcodes its panel at 16rem (inline-size and max-inline-size) on a div
+// inside the shadow root that exposes no part. Width and the 1px right border come from
+// the --side-nav-width token and --cds-border-subtle in brand-theme.css; the 16rem
+// fallback keeps Carbon's own width if the token isn't loaded.
+const sideNavSheet = new CSSStyleSheet();
+sideNavSheet.replaceSync(`
+  .cds--side-nav,
+  .cds--side-nav--expanded {
+    box-sizing: border-box;
+    inline-size: var(--side-nav-width, 16rem);
+    max-inline-size: var(--side-nav-width, 16rem);
+    border-inline-end: 1px solid var(--cds-border-subtle);
+  }
+`);
+
+const SHEETS = { "cds-side-nav": sideNavSheet };
+
 function upgrade(element) {
   const root = element.shadowRoot;
-  if (root && !root.adoptedStyleSheets.includes(sheet)) {
-    root.adoptedStyleSheets = [...root.adoptedStyleSheets, sheet];
+  const elementSheet = SHEETS[element.localName] ?? sheet;
+  if (root && !root.adoptedStyleSheets.includes(elementSheet)) {
+    root.adoptedStyleSheets = [...root.adoptedStyleSheets, elementSheet];
   }
 }
 
-const TAG_LIST = Object.keys(TAG_SELECTORS);
+const TAG_LIST = [...Object.keys(TAG_SELECTORS), ...Object.keys(SHEETS)];
 const SELECTOR = TAG_LIST.join(",");
 
 function upgradeTree(root) {

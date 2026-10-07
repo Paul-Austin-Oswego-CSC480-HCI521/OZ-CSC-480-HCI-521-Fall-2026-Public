@@ -43,6 +43,36 @@
   flex-shrink: 0;
 }
 
+/* Bottom group of the authenticated side nav (Navigation frame 1323:4981): primary actions
+   and Settings pinned below the links. margin-top:auto works because cds-side-nav's panel
+   is a flex column. */
+.page-sidenav-footer {
+  margin-block-start: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem 0 1rem;
+}
+
+.page-sidenav-footer cds-button {
+  inline-size: 100%;
+  max-inline-size: none;
+  padding-inline: 1.5625rem;
+  box-sizing: border-box;
+}
+
+.page-sidenav-footer cds-button::part(button) {
+  inline-size: 100%;
+  max-inline-size: none;
+}
+
+/* Settings is a heading-03-sized (24/28) link, smaller than the 32/40 primary links. */
+.page-sidenav-settings::part(link) {
+  padding-block: 0.625rem;
+  font-size: 1.5rem;
+  line-height: 1.16667;
+}
+
 .page-sidenav-panel {
   padding: 1rem;
 }
@@ -58,15 +88,13 @@
   flex-direction: column;
   gap: 2rem;
   align-items: stretch;
-  /* Matches cds-side-nav's expanded rendered width - see the comment beside
-     <cds-side-nav> in PageTemplate.stories.js for why the border lives here and
-     not on cds-side-nav itself. */
-  margin-inline-start: 16rem;
+  /* Matches cds-side-nav's panel width (--side-nav-width, applied inside its shadow
+     root by carbon-shape-overrides.js). The side nav draws its own right border. */
+  margin-inline-start: var(--side-nav-width, 16rem);
   padding: 2rem;
   background: var(--cds-background);
   box-sizing: border-box;
   min-height: calc(100vh - 3rem);
-  border-inline-start: 1px solid var(--cds-border-subtle);
 }
 
 .page-section {
