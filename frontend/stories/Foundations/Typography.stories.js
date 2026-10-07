@@ -61,10 +61,27 @@ const sample = (fontFamilyVar) => ([name, className, fontSize, lineHeight, weigh
   `;
 };
 
+// Page title (Dashboard "Welcome!" 1476:6138): Carbon heading-07 at Light 54/64. Carbon's own
+// line height is 1.199 (64.75px); Figma pins 64px, so the sample uses the .page-title class and
+// its --page-title-* tokens from brand-theme.css rather than the HEADINGS row above.
+const pageTitle = html`
+  <div class="type-sample">
+    <h1 class="page-title">Welcome!</h1>
+    <p class="type-sample-meta">
+      <code>.page-title</code> - --page-title-font-size 3.375rem (54px) / --page-title-line-height
+      4rem (64px) - --page-title-font-weight 300 - Outfit (--font-family-heading)
+    </p>
+  </div>
+`;
+
 export default {
   title: "Foundations/Typography",
   render: () => html`
     <div data-carbon-theme="brand" style="display: flex; flex-direction: column; gap: 2rem;">
+      <section class="page-section">
+        <h3 class="page-section-heading">Page title</h3>
+        <div class="type-sample-list">${pageTitle}</div>
+      </section>
       <section class="page-section">
         <h3 class="page-section-heading">Headings - Outfit (--font-family-heading)</h3>
         <div class="type-sample-list">${HEADINGS.map(sample("--font-family-heading"))}</div>

@@ -11,7 +11,7 @@ import "../../src/styles/carbon-page-layout.css";
 // source of truth.
 const RADII = [
   ["Small", "--radius-small", "0.25rem", 4, "Buttons, dropdown triggers, text/password/number/select inputs"],
-  ["Large", "--radius-large", "0.75rem", 12, "Cards and modals"],
+  ["Large", "--radius-large", "0.75rem", 12, "Tiles/cards (cds-tile) and modals (cds-modal)"],
 ];
 
 const swatch = ([name, token, rem, px, usage]) => html`
@@ -39,9 +39,7 @@ export default {
         <div style="display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap;">
           <cds-button>Small radius button</cds-button>
           <cds-text-input label="Small radius input" placeholder="Placeholder"></cds-text-input>
-          <div style="width: 16rem; padding: 1rem; background: var(--cds-background); border: 1px solid var(--cds-border-subtle); border-radius: var(--radius-large);">
-            Large radius card
-          </div>
+          <cds-tile class="gift-card" style="inline-size: 16rem;">Large radius card</cds-tile>
         </div>
       </section>
     </div>

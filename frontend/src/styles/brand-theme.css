@@ -55,6 +55,67 @@
   /* Navigation frame (Usability-Team-Figma-File 1323:4981): 300px side nav including its
      1px right border. Applied to cds-side-nav's inner panel by carbon-shape-overrides.js. */
   --side-nav-width: 18.75rem;
+
+  /* Page title (Dashboard "Welcome!" 1476:6138, heading-07): Light 54/64. Carbon's own
+     heading-07 line height is 1.199 (64.75px); Figma pins it at exactly 64px. */
+  --page-title-font-size: 3.375rem;
+  --page-title-line-height: 4rem;
+  --page-title-font-weight: 300;
+}
+
+/* Tabs and the data table take their subtle borders from the layer-01 token, matching Figma. */
+cds-tabs,
+cds-table {
+  --cds-border-subtle: var(--cds-border-subtle-01);
+}
+
+/* Tile/Card (Figma Tile and Card components, Radius/Large). Applies to every cds-tile. */
+cds-tile {
+  border-radius: var(--radius-large);
+}
+
+.gift-card {
+  --cds-layer: var(--card-background);
+}
+
+/* Checkbox (Dashboard checklist 1476:6162): brand green box and fill instead of near-black.
+   Carbon draws the box border and checked fill from --cds-icon-primary and the tick from
+   --cds-icon-inverse, so scoping icon-primary to the checkbox leaves every other icon alone. */
+cds-checkbox {
+  --cds-icon-primary: var(--cds-icon-interactive);
+}
+
+/*
+ * Modal / pop-up (Gifts 2 - pop up 1323:2392, Recipient pop up 1323:6717): --card-background
+ * surface with Radius/Large corners, a 32/40 Outfit title and a roomy body. cds-modal exposes
+ * part="dialog" on its container; the heading takes its font from the host (see side nav note
+ * on font-family above).
+ */
+cds-modal {
+  font-family: var(--font-family-heading);
+}
+
+cds-modal::part(dialog) {
+  background: var(--card-background);
+  border-radius: var(--radius-large);
+  overflow: hidden;
+}
+
+cds-modal-heading {
+  font-family: var(--font-family-heading);
+  font-size: 2rem;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+/* Page title: Outfit Light 54/64. Use on the h1 of a page. */
+.page-title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--page-title-font-size);
+  line-height: var(--page-title-line-height);
+  font-weight: var(--page-title-font-weight);
+  letter-spacing: 0;
 }
 
 cds-button::part(button),
@@ -188,6 +249,19 @@ body,
   --cds-field-hover-01: #EDEBE3;
   --cds-field-hover-02: #EDEBE3;
 
+  /* Data table header (Gifts frame 1287:10113 "layer-accent (contextual)" = #D5EBE0). Carbon's
+     table header reads --cds-layer-accent, which otherwise stays a cool #e0e0e0 gray. */
+  --cds-layer-accent-01: #D5EBE0;
+  --cds-layer-accent-02: #DDEEE5;
+  --cds-layer-accent-hover-01: #C8E3D7;
+  --cds-layer-accent-hover-02: #D0E8DD;
+
+  /* Dashboard cards and pop-ups (Dashboard 1476:6134, Gifts 2 - pop up 1323:2392) sit on #FCFBF4
+     on a white page, i.e. the same value as --cds-background. Kept as its own token so a card
+     stays that colour if the page background ever moves, like --side-nav-background. */
+  --card-background: #FCFBF4;
+  --card-heading: #1C544A; /* 8.38:1 on --card-background; the brand green, same as --cds-button-primary */
+
   /* Text */
   --cds-text-primary: #0A0A0A;
   --cds-text-secondary: #5A4D4A; /* was Carbon default #525252 - warmed toward the border-subtle rose hue (same lightness) */
@@ -205,6 +279,8 @@ body,
   /* Borders & focus */
   --cds-border-subtle: #e9dad7;
   --cds-border-subtle-00: #e9dad7;
+  --cds-border-subtle-01: #ccc2c0; /* Figma "Border/border-subtle-01": tab underlines and table row dividers sit one layer up, on a darker rose-gray than --cds-border-subtle */
+  --cds-border-subtle-02: #ccc2c0;
   --cds-border-strong: #9B847F; /* was Carbon default #8d8d8d - warmed toward the border-subtle rose hue (same lightness) */
   --cds-border-strong-01: #9B847F;
   --cds-border-interactive: #7F0302;

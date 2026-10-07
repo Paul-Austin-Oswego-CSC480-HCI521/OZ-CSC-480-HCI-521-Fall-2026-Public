@@ -122,3 +122,80 @@
   font-size: 0.75rem;
   color: var(--cds-text-secondary);
 }
+
+/* Dashboard card content (Dashboard frame 1476:6134): heading and "View All" link on one row
+   above a 1px rule, then the checklist. The surface itself (radius, colour) is the cds-tile
+   rule in brand-theme.css. */
+.gift-card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.gift-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem 0.625rem;
+  border-block-end: 1px solid var(--cds-text-primary);
+}
+
+.gift-card__heading {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--card-heading);
+}
+
+.gift-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.75rem 2.25rem 2rem;
+}
+
+/* Add Gift / Add Recipient pop-ups (Gifts 2 - pop up 1323:2392): a 785px card, title on the left,
+   a 557px column of fields centred beneath it with 16px between fields, and the primary button
+   centred below. Surface, radius and title type are in brand-theme.css (cds-modal). */
+.gift-modal::part(dialog) {
+  inline-size: min(49.0625rem, 100%);
+  max-inline-size: none;
+  block-size: auto;
+  max-block-size: none;
+}
+
+.gift-modal cds-modal-header {
+  padding: 4.25rem 5.125rem 0.625rem;
+}
+
+.gift-modal cds-modal-body {
+  padding: 0 5.125rem 4.125rem;
+}
+
+.gift-modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-inline-size: 34.8125rem;
+  margin-inline: auto;
+}
+
+.gift-modal__form > cds-text-input {
+  inline-size: 100%;
+}
+
+/* The Figma button is a fixed 186px with the icon pinned to the right. */
+.gift-modal__form > cds-button {
+  inline-size: 11.625rem;
+  max-inline-size: none;
+}
+
+.gift-modal__form > cds-button::part(button) {
+  inline-size: 100%;
+  max-inline-size: none;
+}

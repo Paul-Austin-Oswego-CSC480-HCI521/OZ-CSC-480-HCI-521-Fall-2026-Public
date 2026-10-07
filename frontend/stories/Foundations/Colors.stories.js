@@ -16,6 +16,12 @@ const GROUPS = [
       ["--cds-layer-02", "#F1F8F5"],
       ["--cds-field-01", "#F3F2ED"],
       ["--cds-field-02", "#F1F0EA"],
+      ["--cds-layer-accent-01", "#D5EBE0 (data table header)"],
+      ["--cds-layer-accent-02", "#DDEEE5"],
+      ["--cds-layer-accent-hover-01", "#C8E3D7"],
+      ["--cds-layer-accent-hover-02", "#D0E8DD"],
+      ["--card-background", "#FCFBF4 (dashboard cards and pop-ups)"],
+      ["--card-heading", "#1C544A (card heading green; lightened to #8CC4B6 in dark)"],
     ],
   },
   {
@@ -43,6 +49,8 @@ const GROUPS = [
     tokens: [
       ["--cds-border-subtle", "#e9dad7"],
       ["--cds-border-subtle-00", "#e9dad7"],
+      ["--cds-border-subtle-01", "#ccc2c0 (tab and table dividers)"],
+      ["--cds-border-subtle-02", "#ccc2c0"],
       ["--cds-border-strong", "#9B847F"],
       ["--cds-border-strong-01", "#9B847F"],
       ["--cds-border-interactive", "#7F0302"],
