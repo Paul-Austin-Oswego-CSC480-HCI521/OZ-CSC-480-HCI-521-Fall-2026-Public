@@ -34,7 +34,7 @@ const frame = (content) => html`
 `;
 
 export default {
-  title: "Page Layouts",
+  title: "Page Layouts/App Pages",
   parameters: { layout: "fullscreen" },
 };
 

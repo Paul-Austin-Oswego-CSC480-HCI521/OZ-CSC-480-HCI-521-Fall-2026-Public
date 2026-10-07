@@ -15,6 +15,11 @@ const THEMES = {
 /** @type { import('@storybook/web-components-vite').Preview } */
 const preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ["Foundations", "Carbon Components", "Custom Components", "Page Layouts"],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

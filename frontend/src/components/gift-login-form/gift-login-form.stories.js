@@ -2,7 +2,7 @@ import { html } from "lit";
 import "./gift-login-form.js";
 
 export default {
-  title: "Example/Login Form",
+  title: "Custom Components/Login Form",
   render: ({ errorMessage, loading }) => html`
     <gift-login-form
       error-message=${errorMessage}
